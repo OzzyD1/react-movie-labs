@@ -100,7 +100,6 @@ const movies = [sample, sample, sample, sample, sample, sample, sample];
 const App = () => {
     return <MovieDetailsPage movie={sample} images={images} />;
 };
-cd;
 
 const rootElement = createRoot(document.getElementById("root"));
 rootElement.render(<App />);
