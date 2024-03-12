@@ -2,6 +2,7 @@ import PageTemplate from "../components/templateMovieListPage";
 import { getUpcomingMovies } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
+import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 
 const UpcomingMoviesPage = (props) => {
     const { data, error, isLoading, isError } = useQuery(
@@ -27,7 +28,9 @@ const UpcomingMoviesPage = (props) => {
         <PageTemplate
             title="Upcoming Movies"
             movies={movies}
-            selectFavorite={addToFavorites}
+            action={(movie) => {
+                return <AddToFavoritesIcon movie={movie} />;
+            }}
         />
     );
 };
