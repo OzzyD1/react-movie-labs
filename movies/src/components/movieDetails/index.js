@@ -9,6 +9,10 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
 const root = {
     display: "flex",
@@ -16,7 +20,8 @@ const root = {
     flexWrap: "wrap",
     listStyle: "none",
     padding: 1.5,
-    margin: 0,
+    margin: "0.9em 0 .5em 0",
+    backgroundColor: "#D4D2D5",
 };
 const chip = { margin: 0.5 };
 
@@ -26,13 +31,11 @@ const MovieDetails = ({ movie }) => {
 
     return (
         <>
-            <Typography variant="h5" component="h3">
-                Overview
-            </Typography>
-
-            <Typography variant="h6" component="p">
-                {movie.overview}
-            </Typography>
+            <Paper sx={{ ...root }}>
+                <Typography variant="body1" component="p">
+                    {movie.overview}
+                </Typography>
+            </Paper>
 
             <Paper component="ul" sx={{ ...root }}>
                 <li>

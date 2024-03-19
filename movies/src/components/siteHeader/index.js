@@ -25,9 +25,9 @@ const SiteHeader = ({ history }) => {
 
     const menuOptions = [
         { label: "Home", path: "/" },
-        { label: "Favorites", path: "/movies/favorites" },
         { label: "Upcoming", path: "/movies/upcoming" },
-        { label: "Option 4", path: "/" },
+        { label: "Favorites", path: "/movies/favorites" },
+        { label: "Watchlist", path: "/" },
     ];
 
     const handleMenuSelect = (pageURL) => {
@@ -40,13 +40,13 @@ const SiteHeader = ({ history }) => {
 
     return (
         <>
-            <AppBar position="fixed" color="secondary">
+            <AppBar position="fixed" style={{ backgroundColor: "#FF595E" }}>
                 <Toolbar>
-                    <Typography variant="h4" sx={{ flexGrow: 1 }}>
-                        TMDB Client
-                    </Typography>
-                    <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                        All you ever wanted to know about Movies!
+                    <Typography
+                        variant="h3"
+                        sx={{ flexGrow: 1, paddingLeft: ".2em" }}
+                    >
+                        OZZYBOXD
                     </Typography>
                     {isMobile ? (
                         <>
@@ -93,6 +93,9 @@ const SiteHeader = ({ history }) => {
                                     key={opt.label}
                                     color="inherit"
                                     onClick={() => handleMenuSelect(opt.path)}
+                                    variant="outlined"
+                                    style={{ margin: "0 5px" }}
+                                    size="large"
                                 >
                                     {opt.label}
                                 </Button>

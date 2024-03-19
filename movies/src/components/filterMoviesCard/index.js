@@ -1,5 +1,4 @@
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
@@ -8,7 +7,6 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import img from "../../images/pexels-dziana-hasanbekava-5480827.jpg";
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../spinner";
@@ -16,7 +14,6 @@ import Spinner from "../spinner";
 const formControl = {
     margin: 1,
     minWidth: 220,
-    backgroundColor: "rgb(255, 255, 255)",
 };
 
 export default function FilterMoviesCard(props) {
@@ -36,10 +33,10 @@ export default function FilterMoviesCard(props) {
 
     const handleChange = (e, type, value) => {
         e.preventDefault();
-        props.onUserInput(type, value); // NEW
+        props.onUserInput(type, value);
     };
 
-    const handleTextChange = (e, props) => {
+    const handleTextChange = (e) => {
         handleChange(e, "name", e.target.value);
     };
 
@@ -51,21 +48,24 @@ export default function FilterMoviesCard(props) {
         <Card
             sx={{
                 maxWidth: 345,
-                backgroundColor: "rgb(204, 204, 0)",
+                backgroundColor: "#D4D2D5",
             }}
             variant="outlined"
         >
             <CardContent>
                 <Typography variant="h5" component="h1">
-                    <SearchIcon fontSize="large" />
-                    Filter the movies.
+                    <SearchIcon
+                        fontSize="medium"
+                        sx={{ margin: "0 0.2em 0 0.2em" }}
+                    />
+                    Search & Filter
                 </Typography>
                 <TextField
                     sx={{ ...formControl }}
-                    id="filled-search"
+                    id="fullWidth"
                     label="Search field"
                     type="search"
-                    variant="filled"
+                    variant="outlined"
                     value={props.titleFilter}
                     onChange={handleTextChange}
                 />
@@ -87,14 +87,6 @@ export default function FilterMoviesCard(props) {
                         })}
                     </Select>
                 </FormControl>
-            </CardContent>
-            <CardMedia sx={{ height: 300 }} image={img} title="Filter" />
-            <CardContent>
-                <Typography variant="h5" component="h1">
-                    <SearchIcon fontSize="large" />
-                    Filter the movies.
-                    <br />
-                </Typography>
             </CardContent>
         </Card>
     );

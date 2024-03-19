@@ -25,7 +25,7 @@ export default function MovieCard({ movie, action }) {
     }
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, backgroundColor: "#D4D2D5" }}>
             <CardHeader
                 avatar={
                     movie.favorite ? (
@@ -35,7 +35,7 @@ export default function MovieCard({ movie, action }) {
                     ) : null
                 }
                 title={
-                    <Typography variant="h5" component="p">
+                    <Typography variant="h6" component="p">
                         {movie.title}{" "}
                     </Typography>
                 }
@@ -67,8 +67,8 @@ export default function MovieCard({ movie, action }) {
             <CardActions disableSpacing>
                 {action(movie)}
                 <Link to={`/movies/${movie.id}`}>
-                    <Button variant="outlined" size="medium" color="primary">
-                        More Info ...
+                    <Button variant="outlined" size="medium">
+                        More Info
                     </Button>
                 </Link>
             </CardActions>
