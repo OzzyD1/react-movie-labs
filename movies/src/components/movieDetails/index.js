@@ -9,6 +9,7 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
+import Grid from "@mui/material/Unstable_Grid2";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -26,58 +27,67 @@ const root = {
 const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => {
-    // Don't miss this!
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     return (
         <>
-            <Paper sx={{ ...root }}>
-                <Typography variant="body1" component="p">
-                    {movie.overview}
-                </Typography>
-            </Paper>
+            <Grid container spacing={2}>
+                <Grid item xs={8}>
+                    <Paper sx={{ ...root }}>
+                        <Typography variant="body1" component="p">
+                            {movie.overview}
+                        </Typography>
+                    </Paper>
+                </Grid>
 
-            <Paper component="ul" sx={{ ...root }}>
-                <li>
-                    <Chip label="Genres" sx={{ ...chip }} color="primary" />
-                </li>
-                {movie.genres.map((g) => (
-                    <li key={g.name}>
-                        <Chip label={g.name} sx={{ ...chip }} />
-                    </li>
-                ))}
-            </Paper>
+                <Grid item xs={4}>
+                    <Paper component="ul" sx={{ ...root }}>
+                        <li>
+                            <Chip
+                                label="Genres"
+                                sx={{ ...chip }}
+                                color="primary"
+                            />
+                        </li>
+                        {movie.genres.map((g) => (
+                            <li key={g.name}>
+                                <Chip label={g.name} sx={{ ...chip }} />
+                            </li>
+                        ))}
+                    </Paper>
 
-            <Paper component="ul" sx={{ ...root }}>
-                <Chip
-                    icon={<AccessTimeIcon />}
-                    label={`${movie.runtime} min.`}
-                />
-                <Chip
-                    icon={<MonetizationIcon />}
-                    label={`${movie.revenue.toLocaleString()}`}
-                />
-                <Chip
-                    icon={<StarRate />}
-                    label={`${movie.vote_average} (${movie.vote_count}`}
-                />
-                <Chip label={`Released: ${movie.release_date}`} />
-            </Paper>
+                    <Paper component="ul" sx={{ ...root }}>
+                        <Chip
+                            icon={<AccessTimeIcon />}
+                            label={`${movie.runtime} min.`}
+                        />
+                        <Chip
+                            icon={<MonetizationIcon />}
+                            label={`${movie.revenue.toLocaleString()}`}
+                        />
+                        <Chip
+                            icon={<StarRate />}
+                            label={`${movie.vote_average} (${movie.vote_count}`}
+                        />
+                        <Chip label={`Released: ${movie.release_date}`} />
+                    </Paper>
 
-            <Paper component="ul" sx={{ ...root }}>
-                <li>
-                    <Chip
-                        label="Production Countries"
-                        sx={{ ...chip }}
-                        color="primary"
-                    />
-                </li>
-                {movie.production_countries.map((c) => (
-                    <li key={c.name}>
-                        <Chip label={c.name} sx={{ ...chip }} />
-                    </li>
-                ))}
-            </Paper>
+                    <Paper component="ul" sx={{ ...root }}>
+                        <li>
+                            <Chip
+                                label="Production Countries"
+                                sx={{ ...chip }}
+                                color="primary"
+                            />
+                        </li>
+                        {movie.production_countries.map((c) => (
+                            <li key={c.name}>
+                                <Chip label={c.name} sx={{ ...chip }} />
+                            </li>
+                        ))}
+                    </Paper>
+                </Grid>
+            </Grid>
 
             <Fab
                 color="secondary"
