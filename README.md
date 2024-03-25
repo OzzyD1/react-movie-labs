@@ -13,6 +13,7 @@
 -   List
 -   Avatar
 -   Grid
+-   Modal
 
 ## Styling
 
@@ -24,4 +25,4 @@
 
 -   Watchlist (Page no working)
 -   Movie Credits
--   Firebase Authentication (WIP)
+-   Firebase Authentication (WIP) (Maybe use TMDB Accounts?)
