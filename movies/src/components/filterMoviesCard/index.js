@@ -10,7 +10,6 @@ import Select from "@mui/material/Select";
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../spinner";
-import Fab from "@mui/material/Fab";
 
 const formControl = {
     margin: 1,

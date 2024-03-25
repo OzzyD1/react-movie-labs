@@ -2,7 +2,16 @@
 
 ## API Endpoints
 
--   Popular Movies Page
+-   Popular Movies Page (static)
+-   Now Playing Movies Page (static)
+-   Credits for Movies (parametarised)
+
+## New MUI Componenets
+
+-   Box
+-   List
+-   Avatar
+-   Grid
 
 ## Styling
 
@@ -12,5 +21,5 @@
 
 ## Features
 
--   Added grid to movie details page
 -   Watchlist (Page no working)
+-   Movie Credits

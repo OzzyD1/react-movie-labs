@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
 import Grid from "@mui/material/Unstable_Grid2";
+import MovieCredits from "../movieCredits";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -26,7 +27,7 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie }) => {
+const MovieDetails = ({ movie, credits }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     return (
@@ -37,6 +38,9 @@ const MovieDetails = ({ movie }) => {
                         <Typography variant="body1" component="p">
                             {movie.overview}
                         </Typography>
+                    </Paper>
+                    <Paper sx={{ ...root }}>
+                        <MovieCredits credits={credits} />
                     </Paper>
                 </Grid>
 
