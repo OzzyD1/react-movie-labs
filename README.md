@@ -5,6 +5,7 @@
 -   Popular Movies Page (static)
 -   Now Playing Movies Page (static)
 -   Credits for Movies (parametarised)
+-   All are cached
 
 ## New MUI Componenets
 
@@ -23,3 +24,4 @@
 
 -   Watchlist (Page no working)
 -   Movie Credits
+-   Firebase Authentication (WIP)

@@ -153,19 +153,20 @@ export const getPeopleDetails = ({ queryKey }) => {
         });
 };
 
-export const getPeopleImage = ({ queryKey }) => {
-    const [, idPart] = queryKey;
-    const { id } = idPart;
-    return fetch(
-        `https://api.themoviedb.org/3/person/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`
-    )
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(response.json().message);
-            }
-            return response.json();
-        })
-        .catch((error) => {
-            throw error;
-        });
-};
+// Not used but may be used later
+// export const getPeopleImage = ({ queryKey }) => {
+//     const [, idPart] = queryKey;
+//     const { id } = idPart;
+//     return fetch(
+//         `https://api.themoviedb.org/3/person/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`
+//     )
+//         .then((response) => {
+//             if (!response.ok) {
+//                 throw new Error(response.json().message);
+//             }
+//             return response.json();
+//         })
+//         .catch((error) => {
+//             throw error;
+//         });
+// };
