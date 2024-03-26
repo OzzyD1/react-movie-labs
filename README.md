@@ -25,4 +25,5 @@
 
 -   Watchlist (Page no working)
 -   Movie Credits
--   Firebase Authentication (WIP) (Maybe use TMDB Accounts?)
+-   Firebase Authentication (no error display for wrong credentials)
+-   Error handling (https://blog.appsignal.com/2022/06/15/how-to-handle-errors-in-react.html)

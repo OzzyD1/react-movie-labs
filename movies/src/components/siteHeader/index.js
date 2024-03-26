@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -11,11 +11,29 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import UserAuthentication from "../authUserModal";
+import { onAuthStateChanged } from "firebase/auth";
+import { app, auth } from "../../auth/firebase";
 
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = ({ history }) => {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [userEmail, setUserEmail] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUserEmail(user.email);
+            } else {
+                setUserEmail(null);
+            }
+        });
+
+        // Cleanup function
+        return () => unsubscribe();
+    }, [auth]);
+
     const open = Boolean(anchorEl);
 
     const theme = useTheme();
@@ -86,6 +104,9 @@ const SiteHeader = ({ history }) => {
                                         {opt.label}
                                     </MenuItem>
                                 ))}
+                                <MenuItem>
+                                    <UserAuthentication />
+                                </MenuItem>
                             </Menu>
                         </>
                     ) : (
@@ -102,6 +123,13 @@ const SiteHeader = ({ history }) => {
                                     {opt.label}
                                 </Button>
                             ))}
+                            <Button
+                                variant="outlined"
+                                size="large"
+                                sx={{ color: "white" }}
+                            >
+                                {userEmail ? userEmail : <UserAuthentication />}
+                            </Button>
                         </>
                     )}
                 </Toolbar>

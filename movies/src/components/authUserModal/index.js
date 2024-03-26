@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth } from "./firebase";
+import { auth, app } from "../../auth/firebase";
 import {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
@@ -8,45 +8,47 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 const UserAuthentication = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [open, setOpen] = React.useState(false);
+    const [success, setSuccess] = useState(false);
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const handleSignIn = () => {
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
+    const handleSignIn = async () => {
+        try {
+            console.log(`Email: ${email}, Password: ${password}`);
+            await signInWithEmailAndPassword(auth, email, password);
+            setSuccess(true);
+            setTimeout(handleClose, 2000);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
-    const handleRegister = () => {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed up
-                const user = userCredential.user;
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
-            });
+    const handleRegister = async () => {
+        try {
+            console.log(`Email: ${email}, Password: ${password}`);
+            await createUserWithEmailAndPassword(auth, email, password);
+            setSuccess(true);
+            setTimeout(handleClose, 2000);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
-        <div>
-            <Button variant="contained" onClick={handleOpen}>
+        <>
+            <Button
+                variant="outlined"
+                style={{ margin: "0 5px", color: "white" }}
+                size="large"
+                onClick={handleOpen}
+            >
                 Login/Register
             </Button>
             <Modal
@@ -61,52 +63,56 @@ const UserAuthentication = () => {
                         top: "50%",
                         left: "50%",
                         transform: "translate(-50%, -50%)",
-                        width: 400,
+                        width: 500,
                         bgcolor: "background.paper",
-                        border: "2px solid #000",
                         boxShadow: 24,
                         p: 4,
                     }}
                 >
                     <Typography
                         id="modal-modal-title"
-                        variant="h6"
+                        variant="h5"
                         component="h2"
                     >
-                        Login/Register
+                        {success ? "Success!" : "Login/Register"}
                     </Typography>
-                    <TextField
-                        margin="normal"
-                        fullWidth
-                        label="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <TextField
-                        margin="normal"
-                        fullWidth
-                        label="Password"
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleSignIn}
-                    >
-                        Sign In
-                    </Button>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleRegister}
-                    >
-                        Register
-                    </Button>
+                    {!success && (
+                        <>
+                            <TextField
+                                margin="normal"
+                                fullWidth
+                                label="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <TextField
+                                margin="normal"
+                                fullWidth
+                                label="Password"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={handleSignIn}
+                            >
+                                Sign In
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={handleRegister}
+                                style={{ margin: "0 10px" }}
+                            >
+                                Register
+                            </Button>
+                        </>
+                    )}
                 </Box>
             </Modal>
-        </div>
+        </>
     );
 };
 
