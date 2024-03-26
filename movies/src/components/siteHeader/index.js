@@ -46,6 +46,7 @@ const SiteHeader = ({ history }) => {
         { label: "Now Playing", path: "/movies/nowPlaying" },
         { label: "Popular", path: "/movies/popular" },
         { label: "Upcoming", path: "/movies/upcoming" },
+        { label: "People", path: "movies/people" },
         { label: "Favorites", path: "/movies/favorites" },
         { label: "Watchlist", path: "/movies/watchlist" },
     ];
@@ -105,7 +106,13 @@ const SiteHeader = ({ history }) => {
                                     </MenuItem>
                                 ))}
                                 <MenuItem>
-                                    <UserAuthentication />
+                                    <Button size="large">
+                                        {userEmail ? (
+                                            userEmail
+                                        ) : (
+                                            <UserAuthentication />
+                                        )}
+                                    </Button>
                                 </MenuItem>
                             </Menu>
                         </>

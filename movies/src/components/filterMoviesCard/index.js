@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { getGenres } from "../../api/tmdb-api";
+import { getGenres, searchMovies } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../spinner";
 
@@ -36,8 +36,11 @@ export default function FilterMoviesCard(props) {
         props.onUserInput(type, value);
     };
 
+    // Code to add search functionality but not working
     const handleTextChange = (e) => {
+        // const searchTerm = e.target.value;
         handleChange(e, "name", e.target.value);
+        // const results = searchMovies(["queryKey", searchTerm]);
     };
 
     const handleGenreChange = (e) => {

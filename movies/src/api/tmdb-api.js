@@ -153,6 +153,37 @@ export const getPeopleDetails = ({ queryKey }) => {
         });
 };
 
+export const searchMovies = ({ queryKey }) => {
+    const [, search] = queryKey;
+    return fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&query=${search}&page=1&include_adult=false`
+    )
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(response.json().message);
+            }
+            return response.json();
+        })
+        .catch((error) => {
+            throw error;
+        });
+};
+
+export const getPopularPeople = () => {
+    return fetch(
+        `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
+    )
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(response.json().message);
+            }
+            return response.json();
+        })
+        .catch((error) => {
+            throw error;
+        });
+};
+
 // Not used but may be used later
 // export const getPeopleImage = ({ queryKey }) => {
 //     const [, idPart] = queryKey;
