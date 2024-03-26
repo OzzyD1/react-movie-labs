@@ -38,9 +38,9 @@ export default function FilterMoviesCard(props) {
 
     // Code to add search functionality but not working
     const handleTextChange = (e) => {
-        // const searchTerm = e.target.value;
+        const searchTerm = e.target.value;
         handleChange(e, "name", e.target.value);
-        // const results = searchMovies(["queryKey", searchTerm]);
+        const results = searchMovies(["queryKey", searchTerm]);
     };
 
     const handleGenreChange = (e) => {

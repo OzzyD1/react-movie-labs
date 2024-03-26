@@ -4,10 +4,10 @@
 
 -   Popular Movies Page (static)
 -   Now Playing Movies Page (static)
--   Search (Not Working)(static)
+-   Search (static) (New Page needed)
 -   Credits for Movies (parametarised)
 -   All are cached (except for: search)
--   Popluar People (Page does not work)
+-   Popluar People (needs styling)
 
 ## New MUI Componenets
 
@@ -25,8 +25,13 @@
 
 ## Features
 
--   Watchlist (Page no working)
+-   Watchlist
 -   Movie Credits
 -   Firebase Authentication (no error display for wrong credentials)
 -   Error handling (https://blog.appsignal.com/2022/06/15/how-to-handle-errors-in-react.html)
 -   Credits component is responsive
+
+## To Do
+
+-   Filter by Year
+-   Pagination

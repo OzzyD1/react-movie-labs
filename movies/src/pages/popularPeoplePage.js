@@ -1,7 +1,8 @@
-import PageTemplate from "../components/templateMovieListPage";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import { getPopularPeople } from "../api/tmdb-api";
+import { Grid } from "@mui/material";
+import Header from "../components/headerMovieList";
 
 const PopularPeople = (props) => {
     const { data, error, isLoading, isError } = useQuery(
@@ -22,6 +23,20 @@ const PopularPeople = (props) => {
     // const favorites = movies.filter((m) => m.favorite);
     // localStorage.setItem("favorites", JSON.stringify(favorites));
 
-    return <PageTemplate title="Popular People" people={people} />;
+    return (
+        <Grid container sx={{ padding: "20px" }}>
+            <Grid item xs={12}>
+                <Header title="Popular People" />
+            </Grid>
+            <Grid item container spacing={5}>
+                <Grid item xs={12} sm={6} md={4} lg={3} xl={2}></Grid>
+                {people.map((p) => (
+                    <Grid key={p.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
+                        {p.original_name}
+                    </Grid>
+                ))}
+            </Grid>
+        </Grid>
+    );
 };
 export default PopularPeople;

@@ -35,6 +35,7 @@ const MoviesContextProvider = (props) => {
         }
         setWatchlist(newWatchlist);
     };
+
     console.log(watchlist);
 
     return (
@@ -45,6 +46,7 @@ const MoviesContextProvider = (props) => {
                 removeFromFavorites,
                 addReview,
                 addToWatchlist,
+                watchlist,
             }}
         >
             {props.children}
