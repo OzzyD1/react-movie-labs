@@ -9,8 +9,6 @@ import WriteReview from "../components/cardIcons/writeReview";
 const WatchlistMoviesPage = () => {
     const { watchlist: movieIds } = useContext(MoviesContext);
 
-    console.log(movieIds);
-    // Create an array of queries and run in parallel.
     const watchlistMovieQueries = useQueries(
         movieIds.map((movieId) => {
             return {
@@ -20,7 +18,6 @@ const WatchlistMoviesPage = () => {
         })
     );
 
-    // Check if any of the parallel queries is still loading.
     const isLoading = watchlistMovieQueries.find((m) => m.isLoading === true);
 
     if (isLoading) {

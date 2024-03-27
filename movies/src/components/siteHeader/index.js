@@ -12,27 +12,14 @@ import { styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import UserAuthentication from "../authUserModal";
-import { onAuthStateChanged } from "firebase/auth";
-import { app, auth } from "../../auth/firebase";
+import { auth } from "../../auth/firebase";
+import useAuth from "../../hooks/useAuth";
 
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = ({ history }) => {
     const [anchorEl, setAnchorEl] = useState(null);
-    const [userEmail, setUserEmail] = useState(null);
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUserEmail(user.email);
-            } else {
-                setUserEmail(null);
-            }
-        });
-
-        // Cleanup function
-        return () => unsubscribe();
-    }, [auth]);
+    const userEmail = useAuth(auth);
 
     const open = Boolean(anchorEl);
 
@@ -42,7 +29,7 @@ const SiteHeader = ({ history }) => {
     const navigate = useNavigate();
 
     const menuOptions = [
-        { label: "Home", path: "/" },
+        { label: "Discover", path: "/" },
         { label: "Now Playing", path: "/movies/nowPlaying" },
         { label: "Popular", path: "/movies/popular" },
         { label: "Upcoming", path: "/movies/upcoming" },

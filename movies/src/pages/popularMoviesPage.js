@@ -19,10 +19,6 @@ const PopularMoviesPage = (props) => {
     }
     const movies = data.results;
 
-    // Redundant, but necessary to avoid app crashing.
-    const favorites = movies.filter((m) => m.favorite);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-
     return (
         <PageTemplate
             title="Popular Movies"
