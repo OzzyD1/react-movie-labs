@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { auth, app } from "../../auth/firebase";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../../contexts/authContext";
+import { auth } from "../../auth/firebase";
 import {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
@@ -9,19 +10,18 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import Alert from "@mui/material/Alert";
+import CheckIcon from "@mui/icons-material/Check";
 
 const UserAuthentication = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [open, setOpen] = React.useState(false);
     const [success, setSuccess] = useState(false);
 
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const { handleOpen, handleClose, open } = useContext(AuthContext);
 
     const handleSignIn = async () => {
         try {
-            console.log(`Email: ${email}, Password: ${password}`);
             await signInWithEmailAndPassword(auth, email, password);
             setSuccess(true);
             setTimeout(handleClose, 2000);
@@ -32,7 +32,6 @@ const UserAuthentication = () => {
 
     const handleRegister = async () => {
         try {
-            console.log(`Email: ${email}, Password: ${password}`);
             await createUserWithEmailAndPassword(auth, email, password);
             setSuccess(true);
             setTimeout(handleClose, 2000);
@@ -74,7 +73,16 @@ const UserAuthentication = () => {
                         variant="h5"
                         component="h2"
                     >
-                        {success ? "Success!" : "Login/Register"}
+                        {success ? (
+                            <Alert
+                                icon={<CheckIcon fontSize="inherit" />}
+                                severity="success"
+                            >
+                                Success!
+                            </Alert>
+                        ) : (
+                            "Login/Register"
+                        )}
                     </Typography>
                     {!success && (
                         <>

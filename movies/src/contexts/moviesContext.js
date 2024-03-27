@@ -35,8 +35,6 @@ const MoviesContextProvider = (props) => {
         setWatchlist(newWatchlist);
     };
 
-    console.log(watchlist);
-
     return (
         <MoviesContext.Provider
             value={{

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -44,6 +44,15 @@ const SiteHeader = ({ history }) => {
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
+    };
+
+    const handleSignOut = async () => {
+        try {
+            await auth.signOut();
+            console.log("User signed out!");
+        } catch (error) {
+            console.error("Error signing out: ", error);
+        }
     };
 
     return (
@@ -93,13 +102,13 @@ const SiteHeader = ({ history }) => {
                                     </MenuItem>
                                 ))}
                                 <MenuItem>
-                                    <Button size="large">
-                                        {userEmail ? (
-                                            userEmail
-                                        ) : (
-                                            <UserAuthentication />
-                                        )}
-                                    </Button>
+                                    {userEmail ? (
+                                        <MenuItem onClick={handleSignOut}>
+                                            Sign Out
+                                        </MenuItem>
+                                    ) : (
+                                        <UserAuthentication />
+                                    )}
                                 </MenuItem>
                             </Menu>
                         </>
@@ -122,7 +131,13 @@ const SiteHeader = ({ history }) => {
                                 size="large"
                                 sx={{ color: "white" }}
                             >
-                                {userEmail ? userEmail : <UserAuthentication />}
+                                {userEmail ? (
+                                    <Button onClick={handleSignOut}>
+                                        Sign Out
+                                    </Button>
+                                ) : (
+                                    <UserAuthentication />
+                                )}
                             </Button>
                         </>
                     )}
