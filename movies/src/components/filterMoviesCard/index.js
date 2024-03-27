@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -17,6 +18,8 @@ const formControl = {
 };
 
 export default function FilterMoviesCard(props) {
+    const [selectedYear, setSelectedYear] = useState("");
+
     const { data, error, isLoading, isError } = useQuery("genres", getGenres);
 
     if (isLoading) {
@@ -36,7 +39,7 @@ export default function FilterMoviesCard(props) {
         props.onUserInput(type, value);
     };
 
-    // Code to add search functionality but not working
+    // Searches movies but does not render movies to the screen
     const handleTextChange = (e) => {
         const searchTerm = e.target.value;
         handleChange(e, "name", e.target.value);
@@ -45,6 +48,10 @@ export default function FilterMoviesCard(props) {
 
     const handleGenreChange = (e) => {
         handleChange(e, "genre", e.target.value);
+    };
+
+    const handleYearChange = (e) => {
+        setSelectedYear(e, "year", e.target.value);
     };
 
     return (
@@ -57,11 +64,8 @@ export default function FilterMoviesCard(props) {
         >
             <CardContent>
                 <Typography variant="h5" component="h1">
-                    <SearchIcon
-                        fontSize="medium"
-                        sx={{ margin: "0 0.2em 0 0.2em" }}
-                    />
-                    Search & Filter
+                    <SearchIcon sx={{ margin: "0 0.2em 0 0.2em" }} />
+                    Filter
                 </Typography>
                 <TextField
                     sx={{ ...formControl }}
@@ -89,6 +93,9 @@ export default function FilterMoviesCard(props) {
                             );
                         })}
                     </Select>
+                </FormControl>
+                <FormControl sx={{ ...formControl }}>
+                    <InputLabel id="genre-label">Year</InputLabel>
                 </FormControl>
             </CardContent>
         </Card>
