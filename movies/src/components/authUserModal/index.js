@@ -18,13 +18,14 @@ const UserAuthentication = () => {
     const [password, setPassword] = useState("");
     const [success, setSuccess] = useState(false);
 
-    const { handleOpen, handleClose, open } = useContext(AuthContext);
+    const { handleClose, open } = useContext(AuthContext);
 
     const handleSignIn = async () => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             setSuccess(true);
             setTimeout(handleClose, 2000);
+            console.log("User signed in!");
         } catch (error) {
             console.error(error);
         }
@@ -42,14 +43,6 @@ const UserAuthentication = () => {
 
     return (
         <>
-            <Button
-                variant="outlined"
-                style={{ margin: "0 5px", color: "white" }}
-                size="large"
-                onClick={handleOpen}
-            >
-                Login/Register
-            </Button>
             <Modal
                 open={open}
                 onClose={handleClose}

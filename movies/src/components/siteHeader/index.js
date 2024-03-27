@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -14,12 +14,14 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import UserAuthentication from "../authUserModal";
 import { auth } from "../../auth/firebase";
 import useAuth from "../../hooks/useAuth";
+import { AuthContext } from "../../contexts/authContext";
 
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = ({ history }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const userEmail = useAuth(auth);
+    const { authOpen, handleOpen, handleClose } = useContext(AuthContext);
 
     const open = Boolean(anchorEl);
 
@@ -101,15 +103,15 @@ const SiteHeader = ({ history }) => {
                                         {opt.label}
                                     </MenuItem>
                                 ))}
-                                <MenuItem>
-                                    {userEmail ? (
-                                        <MenuItem onClick={handleSignOut}>
-                                            Sign Out
-                                        </MenuItem>
-                                    ) : (
-                                        <UserAuthentication />
-                                    )}
-                                </MenuItem>
+                                {userEmail ? (
+                                    <MenuItem onClick={handleSignOut}>
+                                        Sign Out
+                                    </MenuItem>
+                                ) : (
+                                    <MenuItem onClick={handleOpen}>
+                                        Sign in/ Register
+                                    </MenuItem>
+                                )}
                             </Menu>
                         </>
                     ) : (
@@ -126,21 +128,33 @@ const SiteHeader = ({ history }) => {
                                     {opt.label}
                                 </Button>
                             ))}
-                            <Button
-                                variant="outlined"
-                                size="large"
-                                sx={{ color: "white" }}
-                            >
-                                {userEmail ? (
-                                    <Button onClick={handleSignOut}>
-                                        Sign Out
-                                    </Button>
-                                ) : (
-                                    <UserAuthentication />
-                                )}
-                            </Button>
+                            {userEmail ? (
+                                <Button
+                                    variant="outlined"
+                                    color="inherit"
+                                    style={{ margin: "0 5px" }}
+                                    size="large"
+                                    onClick={handleSignOut}
+                                >
+                                    Sign Out
+                                </Button>
+                            ) : (
+                                <Button
+                                    variant="outlined"
+                                    color="inherit"
+                                    style={{ margin: "0 5px" }}
+                                    size="large"
+                                    onClick={handleOpen}
+                                >
+                                    Sign in/ Register
+                                </Button>
+                            )}
                         </>
                     )}
+                    <UserAuthentication
+                        open={authOpen}
+                        handleClose={handleClose}
+                    />
                 </Toolbar>
             </AppBar>
             <Offset />
