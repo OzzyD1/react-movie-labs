@@ -19,6 +19,7 @@
 -   Avatar
 -   Grid
 -   Modal
+-   Alert
 
 ### Styling
 

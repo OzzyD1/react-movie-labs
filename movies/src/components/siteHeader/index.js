@@ -103,15 +103,15 @@ const SiteHeader = ({ history }) => {
                                         {opt.label}
                                     </MenuItem>
                                 ))}
-                                {userEmail ? (
-                                    <MenuItem onClick={handleSignOut}>
-                                        Sign Out
-                                    </MenuItem>
-                                ) : (
-                                    <MenuItem onClick={handleOpen}>
-                                        Sign in/ Register
-                                    </MenuItem>
-                                )}
+                                <MenuItem
+                                    onClick={
+                                        userEmail ? handleSignOut : handleOpen
+                                    }
+                                >
+                                    {userEmail
+                                        ? "Sign Out"
+                                        : "Sign in/Register"}
+                                </MenuItem>
                             </Menu>
                         </>
                     ) : (
@@ -128,27 +128,15 @@ const SiteHeader = ({ history }) => {
                                     {opt.label}
                                 </Button>
                             ))}
-                            {userEmail ? (
-                                <Button
-                                    variant="outlined"
-                                    color="inherit"
-                                    style={{ margin: "0 5px" }}
-                                    size="large"
-                                    onClick={handleSignOut}
-                                >
-                                    Sign Out
-                                </Button>
-                            ) : (
-                                <Button
-                                    variant="outlined"
-                                    color="inherit"
-                                    style={{ margin: "0 5px" }}
-                                    size="large"
-                                    onClick={handleOpen}
-                                >
-                                    Sign in/ Register
-                                </Button>
-                            )}
+                            <Button
+                                variant="outlined"
+                                color="inherit"
+                                style={{ margin: "0 5px" }}
+                                size="large"
+                                onClick={userEmail ? handleSignOut : handleOpen}
+                            >
+                                {userEmail ? "Sign Out" : "Sign in/Register"}
+                            </Button>
                         </>
                     )}
                     <UserAuthentication
