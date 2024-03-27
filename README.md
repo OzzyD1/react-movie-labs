@@ -7,8 +7,8 @@
 -   Popular Movies Page (static)
 -   Now Playing Movies Page (static)
 -   Search (static) (calls successful but not rendered)
--   Popluar People (static) (needs styling)
--   Credits for movies details pahe (parametarised)
+-   Popluar People (static)
+-   Credits for movies details page (parametarised)
 
 -   All are cached (except for: search)
 
@@ -32,7 +32,7 @@
 -   Watchlist
 -   Movie Credits
 -   Actor details when you click on them (WIP)
--   Firebase Authentication (no error display for wrong credentials)
+-   Firebase Authentication (register, sign in and log out)
 -   Error handling (https://blog.appsignal.com/2022/06/15/how-to-handle-errors-in-react.html)
 -   Credits component is responsive
 
@@ -46,4 +46,4 @@
 
 -   Filter by Year
 -   Pagination
--   Sign out
+-   Firebase: invalid credentials notification
