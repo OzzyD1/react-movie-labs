@@ -7,8 +7,9 @@
 -   Popular Movies Page (static)
 -   Now Playing Movies Page (static)
 -   Search (static) (calls successful but not rendered)
--   Popluar People (static)
+-   Popluar People Page (static)
 -   People Details (parametarised)
+-   People Credits (parametarised)
 
 -   All are cached (except for: search)
 
@@ -16,6 +17,7 @@
 
 -   Box
 -   List
+-   ListItemButton
 -   Avatar
 -   Grid
 -   Modal
@@ -31,10 +33,12 @@
 
 -   Watchlist
 -   Movie Credits
--   Actor/People details when you click on them in any page
+-   Actor/People Credits
+-   Clicking on an actor will bring you to the actor page
+-   Clicking on a movie in the actor details page will bring you to the movie
 -   Firebase Authentication (register, sign in and log out)
 -   Error handling (https://blog.appsignal.com/2022/06/15/how-to-handle-errors-in-react.html)
--   Credits component is responsive
+-   Most pages responsive
 
 ## Other Chnages
 
@@ -49,3 +53,4 @@
 -   Pagination
 -   Firebase: invalid credentials notification
 -   Only render favourites and watchlist buttons if logged in
+-

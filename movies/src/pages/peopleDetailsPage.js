@@ -8,21 +8,34 @@ import PeopleDetails from "../components/peopleDetails";
 const PeopleDetailsPage = () => {
     const { id } = useParams();
 
-    const { data, error, isLoading, isError } = useQuery(
-        ["peopleDetailsPage", { id: id }],
-        getPeopleDetails
-    );
+    const {
+        data: peopleDetails,
+        error: detailsError,
+        isLoading: detailsLoading,
+        isError: detailsErrorOccurred,
+    } = useQuery(["peopleDetailsPage", { id: id }], getPeopleDetails);
 
-    if (isLoading) {
+    const {
+        data: peopleCredits,
+        error: creditsError,
+        isLoading: creditsLoading,
+        isError: creditsErrorOccurred,
+    } = useQuery(["peopleCredits", { id: id }], getPeopleCredits);
+
+    if (detailsLoading || creditsLoading) {
         return <Spinner />;
     }
 
-    if (isError) {
-        return <h1>{error.message}</h1>;
+    if (detailsErrorOccurred) {
+        return <h1>{detailsError?.message}</h1>;
     }
 
-    return data ? (
-        <PeopleDetails data={data} />
+    if (creditsErrorOccurred) {
+        return <h1>{creditsError.message}</h1>;
+    }
+
+    return peopleDetails ? (
+        <PeopleDetails details={peopleDetails} credits={peopleCredits} />
     ) : (
         <p>Waiting for people details</p>
     );
