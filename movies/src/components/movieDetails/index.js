@@ -11,10 +11,6 @@ import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
 import Grid from "@mui/material/Unstable_Grid2";
 import MovieCredits from "../movieCredits";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
 
 const root = {
     display: "flex",

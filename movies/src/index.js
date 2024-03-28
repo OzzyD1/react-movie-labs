@@ -16,7 +16,12 @@ import AddMovieReviewPage from "./pages/addMovieReviewPage";
 import WatchlistMoviesPage from "./pages/watchlistMoviesPage";
 import NowPlayingMoviesPage from "./pages/nowPlayingMoviesPage";
 import PopularPeople from "./pages/popularPeoplePage";
+import PeopleDetailsPage from "./pages/peopleDetailsPage";
 import "./index.css";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -36,6 +41,10 @@ const App = () => {
                     <SiteHeader />
                     <MoviesContextProvider>
                         <Routes>
+                            <Route
+                                path="/people/:id"
+                                element={<PeopleDetailsPage />}
+                            />
                             <Route
                                 path="/reviews/form"
                                 element={<AddMovieReviewPage />}
