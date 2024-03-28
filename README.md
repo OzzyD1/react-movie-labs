@@ -10,7 +10,6 @@
 -   Popluar People Page (static)
 -   People Details (parametarised)
 -   People Credits (parametarised)
-
 -   All are cached (except for: search)
 
 ### New MUI Componenets
