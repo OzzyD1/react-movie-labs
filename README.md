@@ -1,43 +1,53 @@
-# Assingment 1 - Movie App
+# Assingment 1 - React Movie App
 
-## Added Features
+This repository a movie database app built with React and Material UI. Below is a summary of the added features, including new API endpoints, MUI components, styling updates, implemented features, and other changes made to the project.
 
-### API Endpoints
+## API Endpoints
 
--   Popular Movies Page (static)
--   Now Playing Movies Page (static)
--   Search (static) (calls successful but not rendered)
--   Popluar People Page (static)
--   People Details (parametarised)
--   People Credits (parametarised)
--   All are cached (except for: search)
+### Static
 
-### New MUI Componenets
+-   Discover Movies Page
+-   Popular Movies Page
+-   Now Playing Movies Page
+-   Search (calls successful but no page)
+-   Popluar People Page
+
+### Parameterised
+
+-   People Details
+-   People Credits
+
+### Caching
+
+-   All except for search endpoint
+
+## New MUI Componenets
 
 -   Box
 -   List
 -   ListItemButton
 -   Avatar
--   Grid
+-   Gridv2
 -   Modal
 -   Alert
 -   Divider
 
-### Styling
+## Styling
 
--   Updated the colours of the app
+-   Updated colours
 -   Installed the Roboto font
 
-### Features
+## Features
 
+-   Favourites
 -   Watchlist
 -   Movie Credits
 -   Actor/People Credits
 -   Clicking on an actor will bring you to the actor page
 -   Clicking on a movie in the actor details page will bring you to the movie
--   Firebase Authentication (register, sign in and log out)
+-   Firebase Authentication
 -   Error handling (https://blog.appsignal.com/2022/06/15/how-to-handle-errors-in-react.html)
--   Most pages responsive
+-   Most pages are responsive
 
 ## Other Chnages
 
