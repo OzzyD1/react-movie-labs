@@ -53,4 +53,3 @@
 -   Pagination
 -   Firebase: invalid credentials notification
 -   Only render favourites and watchlist buttons if logged in
--
