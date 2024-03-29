@@ -48,6 +48,8 @@ This repository a movie database app built with React and Material UI. Below is 
 -   Firebase Authentication
 -   Error handling (https://blog.appsignal.com/2022/06/15/how-to-handle-errors-in-react.html)
 -   Most pages are responsive
+-   Pagination
+-   Only render favourites and watchlist buttons if logged in
 
 ## Other Chnages
 
@@ -55,10 +57,9 @@ This repository a movie database app built with React and Material UI. Below is 
 -   Removed redundant useMovie custom hook
 -   Used custom hook for Firebase state observer
 -   React useNavigate (https://reactrouter.com/en/main/hooks/use-navigate)
+-   Watchlist and favourite icons are now on all pages
 
 ## To Do
 
 -   Filter by Year
--   Pagination
 -   Firebase: invalid credentials notification
--   Only render favourites and watchlist buttons if logged in

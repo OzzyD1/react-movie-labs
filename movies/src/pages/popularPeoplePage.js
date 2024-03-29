@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import { getPopularPeople } from "../api/tmdb-api";
@@ -8,12 +9,14 @@ import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import { ListItemButton } from "@mui/material";
+import Pagination from "@mui/material/Pagination";
+import Paper from "@mui/material/Paper";
 
 const PopularPeople = (props) => {
     const navigate = useNavigate();
-
+    const [currentPage, setCurrentPage] = useState(1);
     const { data, error, isLoading, isError } = useQuery(
-        "popularPeople",
+        ["popularPeople", { page: currentPage }],
         getPopularPeople
     );
 
@@ -31,7 +34,7 @@ const PopularPeople = (props) => {
             <Grid item xs={12}>
                 <Header title="Popular People" />
             </Grid>
-            <Grid item container spacing={5}>
+            <Grid item container spacing={2}>
                 {people.map((p) => (
                     <Grid key={p.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
                         <ListItemButton
@@ -83,6 +86,13 @@ const PopularPeople = (props) => {
                     </Grid>
                 ))}
             </Grid>
+            <Paper>
+                <Pagination
+                    count={data.total_pages}
+                    page={currentPage}
+                    onChange={(event, value) => setCurrentPage(value)}
+                />
+            </Paper>
         </Grid>
     );
 };
