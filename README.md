@@ -60,6 +60,8 @@ This repository a movie database app built with React and Material UI. Below is 
 -   Used custom hook for Firebase state observer
 -   React useNavigate (https://reactrouter.com/en/main/hooks/use-navigate)
 -   Watchlist and favourite icons are now on all pages
+-   Made the entire movie card clickable
+-   Only deisplay 1 decimal point for movie rating
 
 ## To Do
 

@@ -55,7 +55,10 @@ const HomePage = (props) => {
                                 onAdd={handleClick}
                                 movie={movie}
                             />
-                            <AddToWatchlistIcon movie={movie} />
+                            <AddToWatchlistIcon
+                                onAdd={handleClick}
+                                movie={movie}
+                            />
                         </>
                     ) : null;
                 }}
@@ -70,7 +73,7 @@ const HomePage = (props) => {
             <SnackbarComponent
                 open={snackbarOpen}
                 handleClose={handleSnackbarClose}
-                message="Movie added to favorites!"
+                message="Movie Added"
             />
         </>
     );

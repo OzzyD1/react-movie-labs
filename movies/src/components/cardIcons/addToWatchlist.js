@@ -3,12 +3,13 @@ import { MoviesContext } from "../../contexts/moviesContext";
 import IconButton from "@mui/material/IconButton";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
-const AddToWatchlistIcon = ({ movie }) => {
+const AddToWatchlistIcon = ({ movie, onAdd }) => {
     const context = useContext(MoviesContext);
 
     const handleAddtoWatchlist = (e) => {
         e.preventDefault();
         context.addToWatchlist(movie);
+        onAdd();
     };
 
     return (
