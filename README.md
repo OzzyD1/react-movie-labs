@@ -31,6 +31,7 @@ This repository a movie database app built with React and Material UI. Below is 
 -   Modal
 -   Alert
 -   Divider
+-   Snackbar
 
 ## Styling
 

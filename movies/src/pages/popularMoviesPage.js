@@ -9,9 +9,12 @@ import Pagination from "@mui/material/Pagination";
 import Paper from "@mui/material/Paper";
 import { auth } from "../auth/firebase";
 import useAuth from "../hooks/useAuth";
+import SnackbarComponent from "../components/addedToSnackbar";
 
 const PopularMoviesPage = (props) => {
     const userEmail = useAuth(auth);
+
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const { data, error, isLoading, isError } = useQuery(
         ["popular", { page: currentPage }],
@@ -27,6 +30,18 @@ const PopularMoviesPage = (props) => {
     }
     const movies = data.results;
 
+    const handleClick = () => {
+        setSnackbarOpen(true);
+    };
+
+    const handleSnackbarClose = (event, reason) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setSnackbarOpen(false);
+    };
+
     return (
         <>
             <PageTemplate
@@ -35,7 +50,10 @@ const PopularMoviesPage = (props) => {
                 action={(movie) => {
                     return userEmail ? (
                         <>
-                            <AddToFavoritesIcon movie={movie} />
+                            <AddToFavoritesIcon
+                                onAdd={handleClick}
+                                movie={movie}
+                            />
                             <AddToWatchlistIcon movie={movie} />
                         </>
                     ) : null;
@@ -48,6 +66,11 @@ const PopularMoviesPage = (props) => {
                     onChange={(event, value) => setCurrentPage(value)}
                 />
             </Paper>
+            <SnackbarComponent
+                open={snackbarOpen}
+                handleClose={handleSnackbarClose}
+                message="Movie added to favorites!"
+            />
         </>
     );
 };
