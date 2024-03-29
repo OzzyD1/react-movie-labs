@@ -10,6 +10,7 @@ import Paper from "@mui/material/Paper";
 import { auth } from "../auth/firebase";
 import useAuth from "../hooks/useAuth";
 import SnackbarComponent from "../components/addedToSnackbar";
+import Box from "@mui/material/Box";
 
 const NowPlayingMoviesPage = (props) => {
     const userEmail = useAuth(auth);
@@ -61,11 +62,18 @@ const NowPlayingMoviesPage = (props) => {
                 }}
             />
             <Paper>
-                <Pagination
-                    count={data.total_pages}
-                    page={currentPage}
-                    onChange={(event, value) => setCurrentPage(value)}
-                />
+                <Box display="flex" justifyContent="center">
+                    <Pagination
+                        count={data.total_pages}
+                        page={currentPage}
+                        onChange={(event, value) => setCurrentPage(value)}
+                        size="large"
+                        sx={{
+                            margin: ".2em",
+                            padding: ".2em",
+                        }}
+                    />
+                </Box>
             </Paper>
             <SnackbarComponent
                 open={snackbarOpen}

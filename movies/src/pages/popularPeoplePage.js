@@ -30,70 +30,87 @@ const PopularPeople = (props) => {
     const people = data.results;
 
     return (
-        <Grid container sx={{ padding: "20px" }}>
-            <Grid item xs={12}>
-                <Header title="Popular People" />
-            </Grid>
-            <Grid item container spacing={2}>
-                {people.map((p) => (
-                    <Grid key={p.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
-                        <ListItemButton
-                            onClick={() => navigate(`/people/${p.id}`)}
+        <>
+            <Grid container sx={{ padding: "15px" }}>
+                <Grid item xs={12}>
+                    <Header title="Popular People" />
+                </Grid>
+                <Grid item container spacing={2}>
+                    {people.map((p) => (
+                        <Grid
+                            key={p.id}
+                            item
+                            xs={12}
+                            sm={6}
+                            md={4}
+                            lg={3}
+                            xl={2}
                         >
-                            <Card sx={{ display: "flex" }}>
-                                <Box
-                                    sx={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                    }}
-                                >
-                                    <CardMedia
-                                        component="img"
-                                        height="140"
-                                        image={`https://image.tmdb.org/t/p/w500/${p.profile_path}`}
-                                        alt={p.original_name}
-                                        onError={(e) => {
-                                            e.target.onerror = null;
-                                            e.target.src =
-                                                "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg";
+                            <ListItemButton
+                                onClick={() => navigate(`/people/${p.id}`)}
+                            >
+                                <Card sx={{ display: "flex" }}>
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            flexDirection: "column",
                                         }}
-                                    />
-                                </Box>
-                                <Box
-                                    sx={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                    }}
-                                >
-                                    <CardContent>
-                                        <Typography
-                                            component="div"
-                                            variant="h5"
-                                        >
-                                            {p.original_name}
-                                        </Typography>
-                                        <Typography
-                                            variant="subtitle1"
-                                            color="text.secondary"
-                                            component="div"
-                                        >
-                                            {`Known For: ${p.known_for_department}`}
-                                        </Typography>
-                                    </CardContent>
-                                </Box>
-                            </Card>
-                        </ListItemButton>
-                    </Grid>
-                ))}
+                                    >
+                                        <CardMedia
+                                            component="img"
+                                            height="200"
+                                            image={`https://image.tmdb.org/t/p/w500/${p.profile_path}`}
+                                            alt={p.original_name}
+                                            onError={(e) => {
+                                                e.target.onerror = null;
+                                                e.target.src =
+                                                    "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg";
+                                            }}
+                                        />
+                                    </Box>
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                        }}
+                                    >
+                                        <CardContent>
+                                            <Typography
+                                                component="div"
+                                                variant="h4"
+                                            >
+                                                {p.original_name}
+                                            </Typography>
+                                            <Typography
+                                                variant="subtitle1"
+                                                color="text.secondary"
+                                                component="div"
+                                            >
+                                                {`Known For: ${p.known_for_department}`}
+                                            </Typography>
+                                        </CardContent>
+                                    </Box>
+                                </Card>
+                            </ListItemButton>
+                        </Grid>
+                    ))}
+                </Grid>
             </Grid>
             <Paper>
-                <Pagination
-                    count={data.total_pages}
-                    page={currentPage}
-                    onChange={(event, value) => setCurrentPage(value)}
-                />
+                <Box display="flex" justifyContent="center">
+                    <Pagination
+                        count={data.total_pages}
+                        page={currentPage}
+                        onChange={(event, value) => setCurrentPage(value)}
+                        size="large"
+                        sx={{
+                            margin: ".2em",
+                            padding: ".2em",
+                        }}
+                    />
+                </Box>
             </Paper>
-        </Grid>
+        </>
     );
 };
 export default PopularPeople;
