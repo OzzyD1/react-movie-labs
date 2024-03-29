@@ -5,6 +5,13 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const AddToFavoritesIcon = ({ movie, onAdd }) => {
     const context = useContext(MoviesContext);
+    const { favorites } = useContext(MoviesContext);
+
+    if (favorites.find((id) => id === movie.id)) {
+        movie.favorite = true;
+    } else {
+        movie.favorite = false;
+    }
 
     const handleAddToFavorites = (e) => {
         e.preventDefault();
@@ -17,7 +24,10 @@ const AddToFavoritesIcon = ({ movie, onAdd }) => {
             aria-label="add to favorites"
             onClick={handleAddToFavorites}
         >
-            <FavoriteIcon color="primary" fontSize="large" />
+            <FavoriteIcon
+                color={movie.favorite ? "secondary" : "primary"}
+                fontSize="large"
+            />
         </IconButton>
     );
 };

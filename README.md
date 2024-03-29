@@ -37,6 +37,7 @@ This repository a movie database app built with React and Material UI. Below is 
 
 -   Updated colours
 -   Installed the Roboto font
+-   Removed favourite icon from card header and changed colour of favourite icon instead
 
 ## Features
 
