@@ -67,3 +67,19 @@ This repository a movie database app built with React and Material UI. Below is 
 
 -   Filter by Year
 -   Firebase: invalid credentials notification
+
+### Installation
+
+1. Get a free API Key at [The Internet Movie Databse](https://www.themoviedb.org)
+2. Clone the repo
+    ```sh
+    git clone https://github.com/OzzyD1/react-movie-labs.git
+    ```
+3. Install NPM packages
+    ```sh
+    npm install
+    ```
+4. Enter your API in `.env`
+    ```js
+    REACT_APP_TMDB_KEY=;
+    ```
